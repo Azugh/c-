@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace lab2
@@ -20,7 +14,7 @@ namespace lab2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(checkBox1.Checked)// Проверка, что выбрано: Пользовательский ввод или заранее определенные варианты;
+            if (checkBox1.Checked)// Проверка, что выбрано: Пользовательский ввод или заранее определенные варианты;
             {
                 s.Width = Convert.ToInt32(textBox1.Text.ToString());//Считывание значения из поля textbox;
                 s.Height = Convert.ToInt32(textBox2.Text.ToString());//Считывание значения из поля textbox;
@@ -50,7 +44,7 @@ namespace lab2
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked)// Проверка состояния ChekBox
+            if (checkBox1.Checked)// Проверка состояния ChekBox
             {
                 this.groupBox1.Enabled = false;// Установка элементов выбора в неактивное состояние;
                 this.textBox1.Enabled = true;// Установка поля для ввода ширины в активное состояние;

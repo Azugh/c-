@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab2
 {
@@ -20,7 +16,7 @@ namespace lab2
         {
 
             pen = new Pen(lc, size);// Инициализация объекта класса Pen;
-             rectangle = Rectangle.FromLTRB(p1.X + x, p1.Y + y, p2.X + x, p2.Y + y);// Объявление и инициализация объекта класса Rectangle;
+            rectangle = Rectangle.FromLTRB(p1.X + x, p1.Y + y, p2.X + x, p2.Y + y);// Объявление и инициализация объекта класса Rectangle;
             if (br)
             {
                 SolidBrush brush = new SolidBrush(f);// Создание объекта класса SolidBrush, хранящего цвет заливки;
@@ -49,7 +45,7 @@ namespace lab2
         public override void Clear(Graphics g)//Реализация наследуемого абстрактного метода;
         {
             pen = new Pen(Color.White, size);// Инициализация объекта класса Pen;
-             rectangle = Rectangle.FromLTRB(p1.X, p1.Y, p2.X, p2.Y);// Объявление и инициализация объекта класса Rectangle;
+            rectangle = Rectangle.FromLTRB(p1.X, p1.Y, p2.X, p2.Y);// Объявление и инициализация объекта класса Rectangle;
             if (br)
             {
                 SolidBrush brush = new SolidBrush(Color.White);// Создание объекта класса SolidBrush, хранящего цвет заливки;

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace lab2
 {
@@ -86,7 +84,7 @@ namespace lab2
             pen = new Pen(Color.White, size);// Инициализация объекта класса Pen;
             points = new PointF[list.Count];// Инициализация массива точек;
             points1 = new PointF[list.Count];// Инициализация массива точек;
-            for(int i = 0; i < list.Count; i++)// Цикл для передачи всех точек из динамического массива в статичный;
+            for (int i = 0; i < list.Count; i++)// Цикл для передачи всех точек из динамического массива в статичный;
             {
                 points[i] = list[i];// Передача;
                 points1[i] = list[i];// Передача;
@@ -95,7 +93,7 @@ namespace lab2
         }
         public override void MouseMove(int x, int y, Graphics g)
         {
-            
+
             list.Add(new Point(x, y));// Добавление новой точки;
 
             DrawDash(g, false);// Вызов метода DrawDash;
@@ -132,25 +130,25 @@ namespace lab2
             else
             {
                 for (int i = 0; i < points1.Length; i++)// Цикл для передачи всех точек из динамического массива в статичный;
-                { 
+                {
                     points1[i].X += x - p3.X;
                     points1[i].Y += y - p3.Y;
                 }
                 rectangle.X += x - p3.X;
-                
+
                 rectangle.Y += y - p3.Y;
-                
+
                 p3.X = x;
                 p3.Y = y;
                 DrawDash(g, true);
                 if (x != 0)
-                   
-                
-                if (rectangle.IntersectsWith(new Rectangle(new Point(0, 0), s)))
-                {
+
+
+                    if (rectangle.IntersectsWith(new Rectangle(new Point(0, 0), s)))
+                    {
                         list.Clear();
                         list.AddRange(points1);
-                }
+                    }
             }
         }
         public override void change(int x, int y, int choosedrect)
@@ -197,23 +195,12 @@ namespace lab2
                 for (int i = 0; i < points1.Length; i++)// Цикл для передачи всех точек из динамического массива в статичный;
                 {
                     points1[i].X += (float)((rectangle.Right - points1[i].X) * (1.0 - kf));
-                   
-                }
-                list.Clear();
-                list.AddRange(points1);
-
-            }
-            if (rectangle.Y < p11.Y)
-            {
-                double kf = (double)(rectangle.Bottom - p11.Y) / rectangle.Height;
-                for (int i = 0; i < points1.Length; i++)// Цикл для передачи всех точек из динамического массива в статичный;
-                {
-                    points1[i].Y += (float)((rectangle.Bottom - points1[i].Y) * (1.0 - kf));
 
                 }
                 list.Clear();
                 list.AddRange(points1);
             }
+
             if (rectangle.X > p11.X)
             {
                 double kf = (double)(rectangle.Right - p11.X) / rectangle.Width;
@@ -225,12 +212,71 @@ namespace lab2
                 list.Clear();
                 list.AddRange(points1);
             }
+
+            if (rectangle.Right < p21.X)
+            {
+                double kf = (double)(rectangle.X - p21.X) / rectangle.Width;
+                for (int i = 0; i < points1.Length; i++)
+                {
+                    points1[i].X += (float)((rectangle.X - points[i].X) * (1.0f + kf));
+                }
+                list.Clear();
+                list.AddRange(points1);
+            }
+
+            if (rectangle.Right > p21.X)
+            {
+                double kf = (double)(rectangle.X - p21.X) / rectangle.Width;
+                for (int i = 0; i < points1.Length; i++)
+                {
+                    points1[i].X += (float)((rectangle.X - points[i].X) * (1.0f + kf));
+                }
+                list.Clear();
+                list.AddRange(points1);
+            }
+
+            if (rectangle.Y < p11.Y)
+            {
+                double kf = (double)(rectangle.Bottom - p11.Y) / rectangle.Height;
+                for (int i = 0; i < points1.Length; i++)// Цикл для передачи всех точек из динамического массива в статичный;
+                {
+                    points1[i].Y += (float)((rectangle.Bottom - points1[i].Y) * (1.0 - kf));
+
+                }
+                list.Clear();
+                list.AddRange(points1);
+            }
+
             if (rectangle.Y > p11.Y)
             {
                 double kf = (double)(rectangle.Bottom - p11.Y) / rectangle.Height;
                 for (int i = 0; i < points1.Length; i++)// Цикл для передачи всех точек из динамического массива в статичный;
                 {
                     points1[i].Y += (float)((rectangle.Bottom - points1[i].Y) * (1.0 - kf));
+
+                }
+                list.Clear();
+                list.AddRange(points1);
+            }
+
+            if (rectangle.Bottom < p21.Y)
+            {
+                double kf = (double)(rectangle.Y - p21.Y) / rectangle.Height;
+                for (int i = 0; i < points1.Length; i++)// Цикл для передачи всех точек из динамического массива в статичный;
+                {
+                    points1[i].Y += (float)((rectangle.Y - points1[i].Y) * (1.0 + kf));
+
+                }
+                list.Clear();
+                list.AddRange(points1);
+            }
+
+            if (rectangle.Bottom > p11.Y)
+            {
+                double kf = (double)(rectangle.Y - p21.Y) / rectangle.Height;
+                for (int i = 0; i < points1.Length; i++)// Цикл для передачи всех точек из динамического массива в статичный;
+                {
+                    points1[i].Y += (float)((rectangle.Y - points1[i].Y) * (1.0 + kf));
 
                 }
                 list.Clear();

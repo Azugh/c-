@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace lab2
 {
@@ -112,8 +107,8 @@ namespace lab2
                     Invalidate();
 
 
-
                     break;
+
                 case 7:
                     figure fig = new rect(e.X, e.Y, f, lc, size, s, false, font);
 
@@ -172,9 +167,8 @@ namespace lab2
                             My_Paint();
                         }
                     }
-
-
                 }
+
                 else if (choosen == 7)
                 {
                     if (figure.red)
@@ -187,19 +181,18 @@ namespace lab2
                         figure.change(e.X, e.Y, choosedrect);
 
                         figure.DrawDash(bf.Graphics, true);
-                        My_Paint();
+                      
                     }
-
                 }
                 else
                 {
                     Graphics g = CreateGraphics();// Создание объекта класса Graphics для рисования 2D объектов;
 
-                    My_Paint();
+                 
                     figure.MouseMove(e.X, e.Y, g);// Вызов метода класса rect, реализующий изменение координат по которым рисуется прямоугольник;
                 }
 
-               
+
 
             }
 
@@ -233,6 +226,7 @@ namespace lab2
                 }
                 else if (choosen == 6)
                 {
+
                     Graphics g = CreateGraphics();
                     foreach (figure f in choosed)
                     {
@@ -280,8 +274,6 @@ namespace lab2
             Invalidate();// Перерисовка;
         }
 
-
-
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)//Проверка нажатой кнопки;
@@ -295,7 +287,6 @@ namespace lab2
                 list.Add(figure);// Добавление нового элемента в динамический массив;
                 Invalidate();
                 figure.tc = false;
-
             }
         }
 
@@ -533,12 +524,14 @@ namespace lab2
                     y2 = f.p2.Y;
             }
 
-            if ((s.Width > x2 - x1) && (s.Height > y2 - y1)) {
+            if ((s.Width > x2 - x1) && (s.Height > y2 - y1))
+            {
 
                 list.AddRange(choosed);
             }
 
-            else {
+            else
+            {
                 MessageBox.Show("Не соответствует размеру окна");
                 choosed.Clear();
             }
@@ -549,24 +542,25 @@ namespace lab2
         public void CopyAsMeta()
         {
 
-
-
             Graphics gr = CreateGraphics();
 
             IntPtr dc = gr.GetHdc();
 
             Metafile mf = new Metafile(dc, EmfType.EmfOnly);
 
-            Bitmap bp = new Bitmap(this.Width, this.Height);
-            gr = Graphics.FromImage(bp);
+            gr.ReleaseHdc(dc);
+            gr.Dispose();
+
+            gr = Graphics.FromImage(mf);
+
             foreach (figure f in choosed)
             {
                 f.Draw(gr, AutoScrollPosition.X, AutoScrollPosition.Y);
             }
-            //gr.ReleaseHdc(dc);
-            //gr.Dispose();
-            //ClipboardMetafileHelper.PutEnhMetafileOnClipboard(this.Handle, mf);
 
+            gr.Dispose();
+
+            ClipboardMetafileHelper.PutEnhMetafileOnClipboard(this.Handle, mf);
         }
 
         public void SelectAll()
@@ -659,15 +653,15 @@ namespace lab2
                 {
                     using (Bitmap bmp = new Bitmap(openFileDialog1.FileName))
                     {
-                        figure = new FigureWithBitmap( x, y, f, lc, size, s, br, font);
+                        figure = new FigureWithBitmap(x, y, f, lc, size, s, br, font);
                         ((FigureWithBitmap)figure).bitmap = bmp;
                     }
                     Graphics g = CreateGraphics();
                     figure.scroll(AutoScrollPosition);
-                    list.Add(figure);                   
+                    list.Add(figure);
                     MessageBox.Show("Th.");
                 }
-               
+
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -679,10 +673,10 @@ namespace lab2
 
         public void saveImage()
         {
-            
-                Bitmap bmp = new Bitmap(image);
-                bmp.Save("image.png", System.Drawing.Imaging.ImageFormat.Png);
-            
+
+            Bitmap bmp = new Bitmap(image);
+            bmp.Save("image.png", System.Drawing.Imaging.ImageFormat.Png);
+
         }
 
         public void changeParametr()
@@ -695,6 +689,6 @@ namespace lab2
             figure.font = form.font;
             Invalidate();
         }
-        
+
     }
 }

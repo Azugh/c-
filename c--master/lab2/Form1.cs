@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace lab2
@@ -93,7 +87,7 @@ namespace lab2
         {
             Form3 f = new Form3();// Создание объекта класса Form3;
             f.size = size;// Присвоение полю size класса Form3 текущего значения толщины линии;
-            
+
             f.ShowDialog();// Отображение диалогового окна;
             size = f.size;// Получение значения из диалога;
             refresh();//Метод, отрисосывающий строку состояния;
@@ -206,9 +200,9 @@ namespace lab2
 
         private void statusBar1_DrawItem(object sender, StatusBarDrawItemEventArgs sbdevent)
         {
-           
+
             statusBarPanel1.Text = $"Размер пера: {size}";//Изменение показателя размера пера;
-           
+
             sbdevent.Graphics.DrawString("Цвет пера: ", new Font("Times New Roman", 10), new SolidBrush(Color.Black), new Point(100, 3));//текст;
             sbdevent.Graphics.FillRectangle(new SolidBrush(lc), new Rectangle(new Point(170, 3), new Size(15, 15)));//Изменение показателя цвета линии;
             sbdevent.Graphics.DrawString("Цвет заливки: ", new Font("Times New Roman", 10), new SolidBrush(Color.Black), new Point(200, 3));//Текст;
@@ -329,7 +323,7 @@ namespace lab2
             toolStripButton8.Checked = false;// Установка датчика не выбранной фигуры в неактивное состояние;
             toolStripButton8.Checked = false;// Установка датчика не выбранной фигуры в неактивное состояние;
             toolStripButton14.Checked = true;// Установка датчика выбранной фигуры в активное состояние;
-           
+
 
         }
 
@@ -370,7 +364,7 @@ namespace lab2
                 Form2 f = (Form2)this.ActiveMdiChild;
                 f.Delete();
             }
-            catch(NullReferenceException) { return; }
+            catch (NullReferenceException) { return; }
         }
 
         private void копироватьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -407,7 +401,7 @@ namespace lab2
         private void правкаToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             Form2 f = (Form2)this.ActiveMdiChild;
-          
+
             if (this.MdiChildren.Length >= 1)//Проверка кол-ва открытых дочерних окон;
             {
                 копироватьToolStripMenuItem.Enabled = true;
@@ -459,7 +453,7 @@ namespace lab2
 
         private void выровнятьПоСеткуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
             Form2 f = (Form2)this.ActiveMdiChild;
             f.virovniat();
 

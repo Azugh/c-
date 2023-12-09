@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace lab2
 {
@@ -15,7 +10,7 @@ namespace lab2
         public string str;
         public text(int x, int y, Color f, Color lc, int size, Size s, bool br, Font font) : base(x, y, f, lc, size, s, br, font)//Передача переменных в конструктор наследуемого класса;
         {
-          
+
         }
 
         public override void Draw(Graphics g, int x, int y)//Реализация наследуемого абстрактного метода;

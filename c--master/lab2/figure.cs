@@ -174,6 +174,7 @@ namespace lab2
             p21.X = p2.X;
             p21.Y = p2.Y;
         }
+
         public virtual void  change(int x, int y, int choosedrect)
         {
             switch (choosedrect)
@@ -218,19 +219,20 @@ namespace lab2
         }
         public void redRect(Graphics g)
         {
-            rectangles[0] = new Rectangle(p11.X - 3, p11.Y - 3, 6, 6);
-            rectangles[1] = new Rectangle(p11.X - 3 + (p21.X - p11.X) /  2, p11.Y - 3, 6, 6);
-            rectangles[2] = new Rectangle(p21.X - 3, p11.Y - 3, 6, 6);
-            rectangles[3] = new Rectangle(p21.X - 3, p11.Y - 3 + (p21.Y - p11.Y) / 2, 6, 6);
-            rectangles[4] = new Rectangle(p21.X - 3, p21.Y - 3, 6, 6);
-            rectangles[5] = new Rectangle(p11.X - 3 + (p21.X - p11.X) / 2, p21.Y - 3, 6, 6);
-            rectangles[6] = new Rectangle(p11.X - 3, p21.Y - 3, 6, 6);
-            rectangles[7] = new Rectangle(p11.X - 3, p11.Y - 3 + (p21.Y - p11.Y) / 2, 6, 6);
+            rectangles[0] = new Rectangle(p11.X, p11.Y, 6, 6);
+            rectangles[1] = new Rectangle(p11.X + (p21.X - p11.X) /  2, p11.Y, 6, 6);
+            rectangles[2] = new Rectangle(p21.X, p11.Y, 6, 6);
+            rectangles[3] = new Rectangle(p21.X, p11.Y + (p21.Y - p11.Y) / 2, 6, 6);
+            rectangles[4] = new Rectangle(p21.X, p21.Y, 6, 6);
+            rectangles[5] = new Rectangle(p11.X + (p21.X - p11.X) / 2, p21.Y, 6, 6);
+            rectangles[6] = new Rectangle(p11.X, p21.Y, 6, 6);
+            rectangles[7] = new Rectangle(p11.X, p11.Y + (p21.Y - p11.Y) / 2, 6, 6);
             for (int i = 0; i < 8; i++)
             {
                 g.FillRectangle(new SolidBrush(Color.Black), rectangles[i]);
             }
         }
+
         public int CheckRect(figure f)
         {
             int num = -1;

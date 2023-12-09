@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab2
 {
-    [Serializable] class rect:figure//Наследование от абстрактного класса figure;
+    [Serializable]
+    class rect : figure//Наследование от абстрактного класса figure;
     {
         [NonSerialized] Pen pen;//Объявление объекта класса pen;
         public rect(int x, int y, Color f, Color lc, int size, Size s, bool br, Font font) : base(x, y, f, lc, size, s, br, font)//Передача переменных в конструктор наследуемого класса;
@@ -17,7 +14,7 @@ namespace lab2
 
         public override void Draw(Graphics g, int x, int y)//Реализация наследуемого абстрактного метода;
         {
-            
+
             pen = new Pen(lc, size);// Инициализация объекта класса Pen;
             rectangle = Rectangle.FromLTRB(p1.X + x, p1.Y + y, p2.X + x, p2.Y + y);// Объявление и инициализация объекта класса Rectangle;
             if (br)
@@ -26,7 +23,7 @@ namespace lab2
                 g.FillRectangle(brush, rectangle);// Заливка фона прямоугольника;
             }
             g.DrawRectangle(pen, rectangle);// Вызов метода класса Graphics, отоброжающего прямоугольник на экране;
-            if(red)
+            if (red)
             {
                 redRect(g);
             }
@@ -45,7 +42,7 @@ namespace lab2
             pen = new Pen(Color.Black, size);// Инициализация объекта класса Pen;
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;// Присвоение полю "DashStyle" значения, меняющего тип линии на пунктир;
             g.DrawRectangle(pen, rectangle);// Вызов метода класса Graphics, отоброжающего прямоугольник на экране;
-        
+
         }
 
         public override void Clear(Graphics g)//Реализация наследуемого абстрактного метода;

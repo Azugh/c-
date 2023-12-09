@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab2
 {
@@ -25,7 +21,7 @@ namespace lab2
 
         public override void DrawDash(Graphics g, bool k)//Реализация наследуемого абстрактного метода;
         {
-            
+
             pen = new Pen(Color.Black, size);// Инициализация объекта класса Pen;
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;// Присвоение полю "DashStyle" значения, меняющего тип линии на пунктир;
             if (k)
@@ -48,6 +44,6 @@ namespace lab2
             p2.Y = y;
             DrawDash(g, false);
         }
-        
+
     }
 }

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -84,21 +79,21 @@ namespace lab2
             textBox.Size = new Size(100, 50);
             textBox.Visible = false;
             this.Controls.Add(textBox);
-            
+
 
             SizeBox = new TextBox();
             SizeBox.Location = new Point(322, 62);
             SizeBox.Size = new Size(100, 50);
             SizeBox.Visible = false;
             this.Controls.Add(SizeBox);
-            
+
 
             LineSize = new TextBox();
             LineSize.Location = new Point(322, 132);
             LineSize.Size = new Size(100, 50);
             LineSize.Visible = false;
             this.Controls.Add(LineSize);
-            
+
 
             LineColor = new Button();
             LineColor.Location = new Point(322, 102);
@@ -107,14 +102,14 @@ namespace lab2
             LineColor.Padding = new Padding(0);
             this.Controls.Add(LineColor);
             LineColor.Click += LineColor_Click;
-           
+
 
             checkBox = new CheckBox();
             checkBox.Location = new Point(402, 182);
             checkBox.Size = new Size(20, 20);
             checkBox.Visible = false;
             this.Controls.Add(checkBox);
-            
+
 
             label = new Label();
             label.Location = new Point(332, 182);
@@ -129,7 +124,7 @@ namespace lab2
             BrushColor.Padding = new Padding(0);
             this.Controls.Add(BrushColor);
             BrushColor.Click += BrushColor_Click;
-                    
+
 
             Textbox = new TextBox();
             Textbox.Location = new Point(422, 232);
@@ -155,7 +150,7 @@ namespace lab2
         {
             ColorDialog color = new ColorDialog();//Создание объекта класса ColorDialog;
             color.ShowDialog();//Отображение диалогового окна;
-            
+
             Controls[10].BackColor = color.Color;
         }
 
@@ -192,35 +187,35 @@ namespace lab2
             form.Invalidate();
             if ((e.Item.SubItems[1].Text == "Rectangle") || (e.Item.SubItems[1].Text == "Ellipse"))
             {
-                
+
                 textBox.Text = e.Item.SubItems[2].Text;
                 textBox.Visible = true;
 
-                
+
                 SizeBox.Text = $"{form.list[list_number].p2.X}:{form.list[list_number].p2.Y}";
                 SizeBox.Visible = true;
 
-                
+
                 LineSize.Text = $"{form.list[list_number].size}";
                 LineSize.Visible = true;
 
 
-                
+
                 LineColor.Text = "Цвет линии";
                 LineColor.BackColor = form.list[list_number].lc;
                 LineColor.Visible = true;
 
-                
+
                 checkBox.Checked = form.list[list_number].br;
                 checkBox.Visible = true;
 
-               
+
                 label.Text = "Заливка";
                 label.Visible = true;
 
 
 
-                
+
                 BrushColor.BackColor = form.list[list_number].f;
                 BrushColor.Text = "Цвет заливки";
                 BrushColor.Visible = true;
@@ -231,24 +226,24 @@ namespace lab2
             }
             if (e.Item.SubItems[1].Text == "Line")
             {
-                
+
                 textBox.Text = e.Item.SubItems[2].Text;
                 textBox.Visible = true;
 
-                
+
                 SizeBox.Text = $"{form.list[list_number].p2.X}:{form.list[list_number].p2.Y}";
                 SizeBox.Visible = true;
 
-                
+
                 LineSize.Text = $"{form.list[list_number].size}";
                 LineSize.Visible = true;
 
-                
+
                 LineColor.BackColor = form.list[list_number].lc;
                 LineColor.Text = "Цвет линии";
                 LineColor.Visible = true;
 
-               
+
             }
             if (e.Item.SubItems[1].Text == "Curve")
             {
@@ -262,12 +257,12 @@ namespace lab2
                 LineSize.Text = $"{form.list[list_number].size}";
                 LineSize.Visible = true;
 
-                
+
                 LineColor.BackColor = form.list[list_number].lc;
                 LineColor.Text = "Цвет линии";
                 LineColor.Visible = true;
 
-             
+
 
             }
             if (e.Item.SubItems[1].Text == "Text")
@@ -317,20 +312,20 @@ namespace lab2
             }
             if (LineColor.Visible)
             {
-                
+
                 form.list[list_number].lc = Controls[10].BackColor;//Присвоение переменной выбранного цвета;
-                
+
             }
             if (checkBox.Visible)
             {
                 form.list[list_number].br = ((CheckBox)this.Controls[11]).Checked;
-                
+
             }
             if (BrushColor.Visible)
             {
-                
+
                 form.list[list_number].f = Controls[13].BackColor;//Присвоение переменной выбранного цвета;
-                
+
             }
             if (Textbox.Visible)
             {
@@ -371,7 +366,7 @@ namespace lab2
 
         private void button5_Click(object sender, EventArgs e)
         {
-           
+
             (form.list[list_number], form.list[list_number - 1]) = (form.list[list_number - 1], form.list[list_number]);
             listView1.Items.Clear();
             ListViewItem[] ListViewItems = new ListViewItem[form.list.Count];
@@ -448,7 +443,7 @@ namespace lab2
                     form.list.Add(new curve(0, 0, Color.White, Color.Black, 1, form.s, true, form.font));
                     break;
                 case "Текст":
-                        form.list.Add(new text(0, 0, Color.White, Color.Black, 1, form.s, true, form.font)); 
+                    form.list.Add(new text(0, 0, Color.White, Color.Black, 1, form.s, true, form.font));
                     break;
 
                 default:
